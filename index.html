@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Genetic Algorithm Game</title>
+	<script src="jquery3.js"></script>
+	<script src="game.js"></script>
+	<style>
+		#grid {
+			float: left;
+		}
+		#output {
+			float: right;
+			font-size: 24px;
+		}
+		#best-moves {
+			font-size: 14px;
+		}
+		.square {
+			float: left;
+			width: 100px;
+			height: 100px;
+			margin: 1px;
+			background-color: pink;
+		}
+		.start {
+			background-color: green;
+		}
+		.goal {
+			background-color: blue;
+		}
+		.hole {
+			background-color: red;
+		}
+		.current {
+			background-color: yellow;
+		}
+	</style>
+</head>
+<body>
+	<div id="grid"></div>
+	<div id="output">
+		<p>
+			<button onClick="moveGenerationTimes();">Move Generation X Times</button><input type="text" id="number-of-generations-to-move" value="1000" /><br/>
+			<button onClick="animateBestMove();">Animate Best Move</button>
+		</p>
+		<p>Number of Moves: <span id="number-of-moves">0</span></p>
+		<p>Generation: <span id="generation">0</span></p>
+		<p>Best Moves: <br/><small><span id="best-moves"></span></small></p>
+	</div>
+
+</body>
+</html>
