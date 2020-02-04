@@ -14,14 +14,21 @@ let goal = [grid_size-1, grid_size-1 ];
 generateRandomNumber = (lower_num, upper_num) => {
 	return Math.floor(Math.random()*upper_num) + lower_num;
 }
+/*let holes = [
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+];*/
 let holes = [
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
-	[generateRandomNumber(1, grid_size-1), generateRandomNumber(0, grid_size-2)],
+	[1, 1],
+	[3, 3],
+	[4, 4],
+	[5, 5],
 ];
 let population = []; //this will store all of the population of moves
 
@@ -73,6 +80,7 @@ sortPopulationByFitness = () => {
 moveGenerationTimes = () => {
 	let num_generations_to_move = $('#number-of-generations-to-move').val();
 	var i=0, j=parseInt(num_generations_to_move);
+	var best_num_moves = population[0].fitness;
 	var iv = setInterval(function() {
 		generation++;
 		$('#generation').html(generation);
@@ -84,6 +92,9 @@ moveGenerationTimes = () => {
 			population[x].fitness = calculateFitness(population[x].moves);
 		}
 		sortPopulationByFitness();
+		if (population[0].fitness < best_num_moves) {
+			i = j;
+		}
 		displayBestMoves();
 		if (++i>=j) clearInterval(iv);
 	}, 1);
